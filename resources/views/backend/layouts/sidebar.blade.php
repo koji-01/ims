@@ -127,61 +127,71 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="{{URL::to('/cart_index')}}" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Assign Product
-              <!-- <span class="right badge badge-danger">New</span> -->
-            </p>
-          </a>
-        </li>
-    
-      </ul>
-    </li>
-          
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/cart_index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Assign Product
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
 
-          <li class="nav-item">
-            <a href="{{URL::to('/delivery_order_list')}}" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>
-                Delivery Order List
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          
-        
-          <li class="nav-item">
-            <a href="{{URL::to('/receive-return-stock')}}" class="nav-link">
-              <i class="nav-icon fas fa-reply"></i>
-              <p>
-                Returned Order
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          
-          
-          <li class="nav-item">
-            <a href="{{URL::to('/racks')}}" class="nav-link">
-              <i class="nav-icon fas fa-server"></i>
-              <p>
-                Rack List
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a href="{{URL::to('/company_list')}}" class="nav-link">
-              <i class="nav-icon fas fa-suitcase"></i>
-              <p>
-                Company List
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/delivery_order_list') }}" class="nav-link">
+                            <i class="nav-icon fas fa-truck"></i>
+                            <p>
+                                Delivery Order List
+                                <!-- <span class="right badge badge-danger">New</span> -->
+                            </p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/receive-return-stock') }}" class="nav-link">
+                            <i class="nav-icon fas fa-reply"></i>
+                            <p>
+                                Returned Order
+                                <!-- <span class="right badge badge-danger">New</span> -->
+                            </p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/racks') }}" class="nav-link">
+                            <i class="nav-icon fas fa-server"></i>
+                            <p>
+                                Rack List
+                                <!-- <span class="right badge badge-danger">New</span> -->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/floors') }}" class="nav-link">
+                            <i class="nav-icon fas fa-server"></i>
+                            <p>
+                                Floor List
+                                <!-- <span class="right badge badge-danger">New</span> -->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ URL::to('/company_list') }}" class="nav-link">
+                            <i class="nav-icon fas fa-suitcase"></i>
+                            <p>
+                                Company List
+                                <!-- <span class="right badge badge-danger">New</span> -->
+                            </p>
+                        </a>
+                    </li>
 
           <li class="nav-item">
             <a href="{{URL::to('/user_list')}}" class="nav-link">
@@ -276,37 +286,66 @@
       </a>
     </li>
 
-    <li class="nav-item">
-      <a href="{{URL::to('/list_product')}}" class="nav-link">
-        <i class="nav-icon fas fa-server"></i>
-        <p>
-          Product List
-          <!-- <span class="right badge badge-danger">New</span> -->
-        </p>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{{URL::to('/request_restock_status')}}" class="nav-link">
-        <i class="nav-icon fas fa-bell"></i>
-        <p>
-          Product Restock Status
-          {{-- oonly display existing item --}}
-          <!-- <span class="right badge badge-danger">New</span> -->
-        </p>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{{URL::to('/my_stock_level')}}" class="nav-link">
-        <i class="nav-icon fas fa-chart-line"></i>
-        <p>
-          Stock Level
-          <!-- <span class="right badge badge-danger">New</span> -->
-        </p>
-      </a>
-    </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/list_product') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-server"></i>
+                                    <p>
+                                        Product List
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/request_restock_status') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-bell"></i>
+                                    <p>
+                                        Product Restock Status
+                                        {{-- oonly display existing item --}}
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ URL::to('/my_stock_level') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-line"></i>
+                                    <p>
+                                        Stock Level
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas  fa-file"></i>
+                                    <p>
+                                        Monthly Report
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ URL::to('/report') }}" class="nav-link">
+                                            <i class="nav-icon fas    fa-cloud"></i>
+                                            <p>
+                                                View Monthly Report
+                                                <!-- <span class="right badge badge-danger">New</span> -->
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ URL::to('/report-create') }}" class="nav-link">
+                                            <i class="nav-icon fas  fa-angle-double-down"></i>
+                                            <p>
+                                                Download Monthly Report
+                                                <!-- <span class="right badge badge-danger">New</span> -->
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-  </ul>
-</li>
+                        </ul>
+                    </li>
 
 
 <li class="nav-item">

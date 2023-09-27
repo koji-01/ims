@@ -13,11 +13,13 @@ use App\Http\Controllers\backend\PickerController;
 use App\Http\Controllers\backend\CartController;
 use App\Http\Controllers\backend\CompanyController;
 use App\Http\Controllers\backend\RackController;
+use App\Http\Controllers\backend\FloorControllerController;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\InvoiceController;
 use App\Http\Controllers\SidebarController;
 use App\Http\Controllers\backend\ReturnStockController;
-use App\Http\Controllers\backend\PDFReportController;
+use App\Http\Controllers\backend\ReportController;
+use App\Http\Controllers\backend\ProductReportController;
 
 
 
@@ -67,6 +69,7 @@ Route::get('/delivery_form', [DeliveryController::class, 'deliveryFormCust'])->n
 Route::post('/delivery/form_sent', [DeliveryController::class, 'storeDelivery'])->name('delivery.submit');
 Route::get('/delivery_order_list', [DeliveryController::class, 'deliveryOrderList'])->name('deliveryOrderList');
 Route::post('/assign-task-do', [DeliveryController::class, 'assignTaskDO'])->name('delivery.assignPicker');
+
 //Return Stock
 Route::get('return-stock-form', [ReturnStockController::class, 'CustReturnStockForm'])->name('returnstockform');
 Route::post('return-stock-submit', [ReturnStockController::class, 'storeReturnStock'])->name('return-stock.store');
@@ -104,7 +107,7 @@ Route::post('/refurbish-product-task/{pickerId}', [PickerController::class, 'ref
 
 
 // Cart
-Route::get('cart_index', [CartController::class, 'ItemList'])->name('quantity.index');
+// Route::get('cart_index', [CartController::class, 'ItemList'])->name('quantity.index');
 Route::get('/cart_view', [CartController::class, 'ItemList'])->name('quantitycart');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/remove/{id}', [CartController::class, 'cartRemove'])->name('cart.remove');
@@ -115,6 +118,9 @@ Route::post('/cart_clear', [CartController::class, 'clear'])->name('cart.clear')
 // Rack
 Route::get('/racks', [RackController::class, 'RackList'])->name('rack.list');
 
+// Floor
+Route::get('/floors', [FloorController::class, 'index'])->name('floor.list');
+
 // Orders
 Route::get('/orders/{companyId}', [OrderController::class, 'orderList'])->name('orderList');
 Route::get('/invoice/{order_no}', [OrderController::class, 'generateInvoice'])->name('backend.invoice.generate');
@@ -124,11 +130,14 @@ Route::get('/invoice/{order_no}', [OrderController::class, 'show'])->name('order
 Route::get('invoice/{id}/download', [InvoiceController::class, 'download'])->name('invoice.download');
 
 // PDF Report Monthly
-Route::get('/report', [PDFReportController::class, 'index'])->name('report.index');
+Route::get('/report', [ReportController::class, 'showReport'])->name('showReport');
+Route::get('/report-create', [ReportController::class, 'generateReport'])->name('generateReport');
 
 // Product Report Monthly
 Route::get('/product-report/{id}', [ProductReportController::class, 'index'])->name('product-report.index');
 
 // Weekly Report for admin
-Route::get('weekly-report', [PDFReportController::class, 'showWeeklyReport'])->name('showWeeklyReport');
-Route::get('generate-weekly-report', [PDFReportController::class, 'generateWeeklyReports'])->name('generateWeeklyReports');
+Route::get('weekly-report', [ReportController::class, 'showWeeklyReport'])->name('showWeeklyReport');
+Route::get('generate-weekly-report', [ReportController::class, 'generateWeeklyReports'])->name('generateWeeklyReports');
+Route::get('weekly-report', [ReportController::class, 'showWeeklyReport'])->name('showWeeklyReport');
+Route::get('generate-weekly-report', [ReportController::class, 'generateWeeklyReports'])->name('generateWeeklyReports');

@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Weekly Report</h1>
 
-        <form method="GET" action="{{ URL::to('generate-weekly-report') }}" style="padding-bottom: 2vh">
+        <form method="GET" action="{{ URL::to('/admin/generate-weekly-report') }}" style="padding-bottom: 2vh">
             @csrf
             <div class="form-group">
                 <label for="start_date">Start Date:</label>
@@ -22,7 +22,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Company Name</th>
+                    <th>Customer Name</th>
                     <th>Week Number</th>
                     <th>Total Inflow Quantity</th>
                     <th>Total Outflow Quantity</th>
@@ -33,7 +33,7 @@
             <tbody>
                 @foreach ($weeklyReports as $report)
                     <tr>
-                        <td>{{ $report->company_id}}</td>
+                        <td>{{ $report->company_name}}</td>
                         <td>{{ $report->week_number }}</td>
                         <td>{{ $report->total_inflow_quantity }}</td>
                         <td>{{ $report->total_outflow_quantity }}</td>

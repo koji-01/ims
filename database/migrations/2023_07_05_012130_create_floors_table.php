@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookcategories', function (Blueprint $table) {
+        Schema::create('floor_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();  
+            $table->string('location_codes')->nullable();
+            $table->integer('capacity')->nullable();
+            $table->integer('occupied')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookcategories');
+        Schema::dropIfExists('floor_locations');
     }
 };

@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-<title>Product List</title>
+    <title>Product List</title>
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">
@@ -27,6 +27,7 @@
                                 <th>Company</th>
                                 @if (Auth::user()->role == 1 || Auth::user()->role == 2)
                                     <th>Rack Location</th>
+                                    <th>Floor Location</th>
                                 @endif
                                 <th>Product Name</th>
                                 <th>Qty</th>
@@ -38,23 +39,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($list as $row)
+                            @foreach ($list as $row)
                                 <tr>
                                     <td>{{ $row->id }}</td>
                                     <td>{{ $row->company_name }}</td>
                                     @if (Auth::user()->role == 1 || Auth::user()->role == 2)
-                                        <td>{{ $row->location_code }}</td>
+                                        <td>{{ $row->location_code ?? '-' }}</td>
+                                        <td>{{ $row->location_codes ?? '-' }}</td>
                                     @endif
                                     <td>{{ $row->product_name }}</td>
                                     <td>{{ $row->remaining_quantity }}</td>
                                     <td>{{ $row->weight_of_product }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/Image/'.$row->product_image) }}" style="height: 100px; width: 150px;">
+                                        <img src="{{ asset('storage/Image/' . $row->product_image) }}"
+                                            style="height: 100px; width: 150px;">
                                     </td>
                                     @if (Auth::user()->role == 1)
                                         <td>
-                                            <a href="{{ URL::to('/edit_product/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{ URL::to('delete_product/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
+                                            <a href="{{ URL::to('/edit_product/' . $row->id) }}"
+                                                class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{ URL::to('delete_product/' . $row->id) }}"
+                                                class="btn btn-sm btn-danger" id="delete" class="middle-align">Delete</a>
                                         </td>
                                     @endif
                                 </tr>
@@ -91,7 +96,8 @@
                     var productNameCell = rows[i].getElementsByTagName('td')[3];
                     var productNameText = productNameCell.textContent.toLowerCase();
 
-                    var isVisible = idText.includes(searchText) || companyText.includes(searchText) || rackLocationText.includes(searchText) || productNameText.includes(searchText);
+                    var isVisible = idText.includes(searchText) || companyText.includes(searchText) ||
+                        rackLocationText.includes(searchText) || productNameText.includes(searchText);
 
                     if (isVisible) {
                         rows[i].style.display = '';

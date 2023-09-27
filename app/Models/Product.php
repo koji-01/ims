@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Floor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,9 +20,19 @@ class Product extends Model
         return $this->belongsTo(Rack::class);
     }
 
+    public function floor()
+    {
+        return $this->belongsTo(Floor::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function productreport()
+    {
+        return $this->belongsTo(ProductReport::class);
     }
 
     public function deliveries()

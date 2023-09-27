@@ -1,10 +1,10 @@
 @extends('backend.layouts.app')
 @section('content')
-<title>Add Product</title>
-<div class="card-body">
-    <div class="row">
+    <title>Add Product</title>
+    <div class="card-body">
+        <div class="row">
 
-      <div class="col-md-2">
+            <div class="col-md-2">
 
       </div>
                      <div class="col-md-8">
@@ -22,30 +22,60 @@
                 <div class="card-body">
 
 
-                  <div class="form-group">
-                    <label for="company_id">Company Name</label>
-                    <select name="company_id" class="form-control" id="company_id">
-                        <option value="">Select Company Name</option>
-                        @foreach($companies as $company)
-                            <option value="{{ $company->id }}">{{ $company->company_name }}</option>
-                        @endforeach
-                    </select>
-                    @error('company_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                
+                            <div class="form-group">
+                                <label for="company_id">Company Name</label>
+                                <select name="company_id" class="form-control" id="company_id">
+                                    <option value="">Select Company Name</option>
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('company_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rack_ids">Rack Location</label>
+                                <select name="rack_id" class="form-control" id="rack_id">
+                                    <option value="">Select Rack Location</option>
+                                    @foreach ($racks as $location)
+                                        <option value="{{ $location->id }}">{{ $location->location_code }}</option>
+                                    @endforeach
+                                </select>
+                                @error('rack_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                 <div class="form-group">
-                  <label for="rack_ids">Rack Location</label>
-                  <select name="rack_id" class="form-control" id="rack_id">
-                      <option value="">Select Rack Location</option>
-                      @foreach($racks as $location)
-                          <option value="{{ $location->id }}">{{ $location->location_code }}</option>
+                  <label for="floor_ids">Floor Location</label>
+                  <select name="floor_id" class="form-control" id="floor_id">
+                      <option value="">Select Floor Location</option>
+                      @foreach($floors as $location)
+                          <option value="{{ $location->id }}">{{ $location->location_codes }}</option>
                       @endforeach
                   </select>
-                  @error('rack_id')
+                  @error('floor_id')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                </div>       
+
+                <div class="form-group">
+                  <label for="floor_ids">Floor Location</label>
+                  <select name="floor_id" class="form-control" id="floor_id">
+                      <option value="">Select Floor Location</option>
+                      @foreach($floors as $location)
+                          <option value="{{ $location->id }}">{{ $location->location_codes }}</option>
+                      @endforeach
+                  </select>
+                  @error('floor_id')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
@@ -57,12 +87,12 @@
 <input type="text" name="product_name"  class="form-control @error('title') is-invalid @enderror"
  id="exampleInputEmail1" placeholder="Enter Product Name" value="{{ old('product_name') }}">
 
-@error('title')
-<span class="invalid-feedback" role="alert">
-<strong>{{ $message }}</strong>
-</span>
-@enderror
-</div>
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
 <div class="form-group">
     <label for="product_price">Product Price (Per Item)</label>
@@ -100,51 +130,56 @@
   @enderror
   </div>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Item Per Carton</label>
-    <input type="number" name="item_per_carton"  class="form-control @error('title') is-invalid @enderror"
-     id="exampleInputEmail1" placeholder="Enter Quantity" value="{{ old('item_per_carton') }}">
-    
-    @error('slug')
-    <span class="invalid-feedback" role="alert">
-    <strong>{{ $message }}</strong>
-    </span>
-    @enderror
-    </div>
 
-<div class="form-group">
-    <label for="exampleInputEmail1">Product Dimension (10x10x10)</label>
-    <input type="text" name="product_dimensions"  class="form-control @error('title') is-invalid @enderror"
-     id="exampleInputEmail1" placeholder="Product Dimensions" value="{{ old('product_dimensions') }}">
-    
-    @error('title')
-    <span class="invalid-feedback" role="alert">
-    <strong>{{ $message }}</strong>
-    </span>
-    @enderror
-</div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Item Per Carton</label>
+                                <input type="number" name="item_per_carton"
+                                    class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
+                                    placeholder="Enter Quantity">
 
-<div class="form-group">
-  <label for="exampleInputEmail1">Weight Per Item (kg)</label>
-  <<input type="text" name="weight_per_item"  class="form-control @error('title') is-invalid @enderror"
-  id="weight_per_item" placeholder="Weight Per Item" step="0.1">
-  @error('title')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-</div>
+                                @error('slug')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-<div class="form-group">
-  <label for="exampleInputEmail1">Weight Per Carton (kg)</label>
-  <input type="text" name="weight_per_carton"  class="form-control @error('title') is-invalid @enderror"
-   id="weight_per_carton" placeholder="Weight Per Carton" step="0.1">
-  @error('title')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-</div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Product Dimension</label>
+                                <input type="text" name="product_dimensions"
+                                    class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
+                                    placeholder="Product Dimensions">
+
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Weight Per Item (kg)</label>
+                                <<input type="text" name="weight_per_item"
+                                    class="form-control @error('title') is-invalid @enderror" id="weight_per_item"
+                                    placeholder="Weight Per Item" step="0.1">
+                                    @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Weight Per Carton (kg)</label>
+                                <input type="text" name="weight_per_carton"
+                                    class="form-control @error('title') is-invalid @enderror" id="weight_per_carton"
+                                    placeholder="Weight Per Carton" step="0.1">
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
 <div class="form-group">
   <label for="exampleInputEmail1">Total Weight (kg)   [Total Weight Must Not Exceed 200kg When Adding Product to Rack]</label>
@@ -156,34 +191,36 @@
   @enderror
 </div>
 
-<div class="form-group">
-  <label for="exampleInputEmail1">Product Image</label>
-  <input type="file" name="product_image"  class="form-control @error('title') is-invalid @enderror"
-   id="exampleInputEmail1" placeholder="Upload Image">
-  
-  @error('title')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-</div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Product Image</label>
+                                <input type="file" name="product_image"
+                                    class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
+                                    placeholder="Upload Image">
 
-<div class="form-group">
-  <label for="exampleInputEmail1">Date to be stored</label>
-  <input type="date" name="date_to_be_stored"  class="form-control @error('title') is-invalid @enderror"
-   id="exampleInputEmail1" placeholder="Date">
-  
-  @error('title')
-  <span class="invalid-feedback" role="alert">
-  <strong>{{ $message }}</strong>
-  </span>
-  @enderror
-</div>
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Date to be stored</label>
+                                <input type="date" name="date_to_be_stored"
+                                    class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1"
+                                    placeholder="Date">
+
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
 
-                 
-                </div>
-                <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-warning">Submit</button>
@@ -194,43 +231,41 @@
         </div>
 
 
- <div class="col-md-2">
-
-      </div>
-
+            <div class="col-md-2">
 
             </div>
-            <!-- /.row -->
+
+
         </div>
+        <!-- /.row -->
+    </div>
 
-                        <script type="text/javascript">
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-              $('#image')
-                  .attr('src', e.target.result)
-                  .width(80)
-                  .height(80);
-          };
-          reader.readAsDataURL(input.files[0]);
-      }
-   }
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image')
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
-   const cartonQuantity = document.getElementById('carton_quantity');
-  const weightPerCarton = document.getElementById('weight_per_carton');
-  const totalWeightOutput = document.getElementById('total_weight');
+        const cartonQuantity = document.getElementById('carton_quantity');
+        const weightPerCarton = document.getElementById('weight_per_carton');
+        const totalWeightOutput = document.getElementById('total_weight');
 
-  cartonQuantity.addEventListener('input', updateTotalWeight);
-  weightPerCarton.addEventListener('input', updateTotalWeight);
+        cartonQuantity.addEventListener('input', updateTotalWeight);
+        weightPerCarton.addEventListener('input', updateTotalWeight);
 
-  function updateTotalWeight() {
-    const cartonQuantityValue = parseFloat(cartonQuantity.value) || 0;
-    const weightPerCartonValue = parseFloat(weightPerCarton.value) || 0;
-    const totalWeight = cartonQuantityValue * weightPerCartonValue;
-    totalWeightOutput.value = totalWeight.toFixed(2);
-  }
-</script>
-
+        function updateTotalWeight() {
+            const cartonQuantityValue = parseFloat(cartonQuantity.value) || 0;
+            const weightPerCartonValue = parseFloat(weightPerCarton.value) || 0;
+            const totalWeight = cartonQuantityValue * weightPerCartonValue;
+            totalWeightOutput.value = totalWeight.toFixed(2);
+        }
+    </script>
 @endsection
-

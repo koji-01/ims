@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Delivery;
 use App\Models\Weight;
 use App\Models\Rack;
+use App\Models\Floor;
 use App\Models\Quantity;
 use App\Models\Picker;
 use App\Models\User;
@@ -107,6 +108,8 @@ class DeliveryController extends Controller
 
     public function assignTaskDO(Request $request)
     {
+        //return response()->json($request, 200);
+
         $validatedData = $request->validate([
             'user_id' => 'required',
             'delivery_id' => 'required',
@@ -146,9 +149,21 @@ class DeliveryController extends Controller
             $quantity->save();
     
             $total_weight = $product->weight_per_item * $quantity_deducted;
+
             $rack = Rack::where('id', $product->rack_id)->firstOrFail();
-            $rack->occupied = max(0, $rack->occupied - $total_weight);
-            $rack->save();
+            $floors = Floor::where('id', $product->floor_id)->firstOrFail();
+
+            if($rack != null)
+            {
+                $rack->occupied = max(0, $rack->occupied - $total_weight);
+                $rack->save();
+                
+            } else if ($floor != null)
+            {
+                $floors->occupied = max(0, $floors->occupied - $total_weight);
+                $floors->save();
+
+            }
     
             $weight = Weight::where('product_id', $product->id)->firstOrFail();
             $weight->weight_of_product -= $total_weight;
@@ -157,7 +172,8 @@ class DeliveryController extends Controller
             $picker = new Picker();
             $picker->user_id = $userId;
             $picker->product_id = $id;
-            $picker->rack_id = $rack->id; // Adjust this based on your structure
+            $picker->rack_id = $product->rack_id ?? null; // Adjust this based on your structure
+            $picker->floor_id = $product->floor_id ?? null; // Adjust this based on your structure
             $picker->quantity = $item['quantity'];
             $picker->status = 'Pending';
             $picker->order_no = $deliveryId;
